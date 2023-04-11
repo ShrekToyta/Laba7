@@ -1,0 +1,38 @@
+using System;
+
+namespace Classes
+{
+    public class FixedSalaryWorker : Person
+    {
+        public double salary { get; set; }
+        public double bonus { get; set; }
+
+        public double CalculateTotalSalary()
+        {
+            return salary + ((salary * bonus) / 100.0);
+        }
+
+        public double CalculateTax()
+        {
+            return CalculateTotalSalary() * 0.13;
+        }
+
+        public double CalculateNetSalary()
+        {
+            return CalculateTotalSalary() - CalculateTax();
+        }
+        public virtual void Read()
+        {
+
+            Console.WriteLine("Введите месячный оклад: ");
+            salary = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите % премии: ");
+            bonus = Convert.ToDouble(Console.ReadLine());
+        }
+        public virtual void Print()
+        {
+
+            Console.WriteLine($"Конечная сумма: {CalculateNetSalary()}");
+        }
+    }
+}
